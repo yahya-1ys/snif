@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>CinemaPro+</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">🎬 CinemaPro+</div>
+
+    <button id="themeToggle">🌙</button>
+</header>
+
+<!-- SLIDER -->
+<section class="slider">
+
+<div class="slide active" style="background-image:url('https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg')">
+    <div class="slide-text">
+        <h1>Interstellar</h1>
+        <p>Uzayın derinliklerinde epik bir yolculuk</p>
+    </div>
+</div>
+
+<div class="slide" style="background-image:url('https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg')">
+    <div class="slide-text">
+        <h1>Avengers</h1>
+        <p>Dünyayı kurtaran kahramanlar</p>
+    </div>
+</div>
+
+<div class="slide" style="background-image:url('https://image.tmdb.org/t/p/original/zqkmTXzjkAgXmEWLRsY4UpTWCeo.jpg')">
+    <div class="slide-text">
+        <h1>Joker</h1>
+        <p>Bir adamın karanlık dönüşümü</p>
+    </div>
+</div>
+
+</section>
+
+<!-- SEARCH -->
+<section class="controls">
+
+<input type="text" id="searchInput" placeholder="Film ara...">
+
+<div class="filters">
+<button onclick="filterCategory('all')">Tümü</button>
+<button onclick="filterCategory('aksiyon')">Aksiyon</button>
+<button onclick="filterCategory('bilimkurgu')">Bilim Kurgu</button>
+<button onclick="filterCategory('dram')">Dram</button>
+</div>
+
+</section>
+
+<!-- MOVIES -->
+<section class="movies">
+
+<div class="card" data-category="bilimkurgu">
+<img src="https://image.tmdb.org/t/p/w500/q719jXXEzOoYaps6babgKnONONX.jpg">
+<h3>Inception</h3>
+<span>⭐ 8.8</span>
+</div>
+
+<div class="card" data-category="bilimkurgu">
+<img src="https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg">
+<h3>Interstellar</h3>
+<span>⭐ 8.6</span>
+</div>
+
+<div class="card" data-category="dram">
+<img src="https://image.tmdb.org/t/p/w500/udDclJoHjfjb8Ekgsd4FDteOkCU.jpg">
+<h3>Joker</h3>
+<span>⭐ 8.4</span>
+</div>
+
+<div class="card" data-category="aksiyon">
+<img src="https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg">
+<h3>Avengers</h3>
+<span>⭐ 8.4</span>
+</div>
+
+</section>
+
+<footer>
+© 2026 CinemaPro+
+</footer>
+
+<script>
+
+// SLIDER
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+
+function showSlide(){
+
+slides.forEach(slide=>{
+slide.classList.remove("active");
+});
+
+index++;
+
+if(index >= slides.length){
+index = 0;
+}
+
+slides[index].classList.add("active");
+
+}
+
+setInterval(showSlide,4000);
+
+
+// SEARCH
+const input = document.getElementById("searchInput");
+
+input.addEventListener("keyup",function(){
+
+const value = input.value.toLowerCase();
+
+const cards = document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+const title = card.querySelector("h3").textContent.toLowerCase();
+
+card.style.display = title.includes(value) ? "block" : "none";
+
+});
+
+});
+
+
+// FILTER
+function filterCategory(category){
+
+const cards = document.querySelectorAll(".card");
+
+cards.forEach(card=>{
+
+if(category === "all"){
+card.style.display = "block";
+}
+else{
+card.style.display =
+card.dataset.category === category ? "block" : "none";
+}
+
+});
+
+}
+
+
+// DARK / LIGHT MODE
+const toggle = document.getElementById("themeToggle");
+
+toggle.onclick = function(){
+
+document.body.classList.toggle("light");
+
+if(document.body.classList.contains("light")){
+toggle.textContent = "☀️";
+}else{
+toggle.textContent = "🌙";
+}
+
+}
+
+</script>
+
+</body>
+</html>
+    
+</body>
+</html>
